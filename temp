@@ -1,0 +1,9 @@
+grammar = r"""
+  NP: {<DT|PP\$>?<JJ>*<NN>*}   # chunk determiner/possessive, adjectives and noun
+      {<NNP>+}                # chunk sequences of proper nouns
+"""
+cp = nltk.RegexpParser(grammar)
+
+
+for i in t.subtrees(filter=lambda x: x.label() == 'NP'):
+    print(i.leaves())
